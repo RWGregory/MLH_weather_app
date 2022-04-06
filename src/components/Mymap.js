@@ -1,14 +1,7 @@
 import React from 'react'
 import mapboxgl from 'mapbox-gl'
 
-function MyMap({
-  latLng,
-  setLatLng,
-  setCity,
-  results,
-  setResults,
-  setClickedLast,
-}) {
+function MyMap({ latLng, setLatLng }) {
   const mapContainer = React.useRef(null)
   const map = React.useRef(null)
   const marker = React.useRef(null)
@@ -20,10 +13,9 @@ function MyMap({
       container: mapContainer.current, // container ID
       style: 'mapbox://styles/mapbox/streets-v11', // style URL
       center: [latLng[1], latLng[0]], // starting position [lng, lat] <--
-      zoom: 9, // starting zoom
+      zoom: 4, // starting zoom
     }).on('click', (e) => {
       setLatLng([{ ...e.lngLat }.lat, { ...e.lngLat }.lng])
-      setClickedLast(true)
     })
 
     marker.current = new mapboxgl.Marker()
